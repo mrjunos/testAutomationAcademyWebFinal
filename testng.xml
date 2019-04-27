@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="BDD Test Suite" verbose="1">
+    <parameter name="browser" value="chrome"/>
+    <parameter name="url" value="http://www.espn.com/?src=com&amp;_adblock=true"/>
+    <test name="Login and Update Profile Test">
+        <classes>
+            <class name="com.globant.academy.runners.TestRunner"/>
+        </classes>
+    </test>
+</suite>
