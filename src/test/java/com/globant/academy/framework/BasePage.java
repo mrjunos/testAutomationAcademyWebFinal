@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class BasePage {
 
     private WebDriver driver;
@@ -44,11 +46,16 @@ public class BasePage {
         getWait().until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(iframe));
     }
 
+    public void pause(int seconds) {
+        getAction().pause(Duration.ofSeconds(seconds));
+    }
+
     public void toDefault() {
         driver.switchTo().defaultContent();
     }
 
     public void scrollTo(WebElement element) {
+        getWait().until(ExpectedConditions.elementToBeClickable(element));
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 }

@@ -26,7 +26,7 @@ public class HomePage extends BasePage {
     @FindBy(id = "disneyid-iframe")
     private WebElement registerIframe;
 
-    @FindBy(id = "did-ui-view")
+    @FindBy(id = "disneyid-iframe")
     private WebElement registerModal;
 
     @FindBy(name = "firstName")
@@ -35,10 +35,10 @@ public class HomePage extends BasePage {
     @FindBy(name = "lastName")
     private WebElement fieldLastNameInput;
 
-    @FindBy(name = "email")
+    @FindBy(css = "input[type='email']")
     private WebElement fieldEmailInput;
 
-    @FindBy(name = "newPassword")
+    @FindBy(css = "input[type='password']")
     private WebElement fieldNewPasswordInput;
 
     @FindBy(xpath = "//*[@id='did-ui-view']/div/section/section/form/section[6]/div/button")
@@ -50,6 +50,30 @@ public class HomePage extends BasePage {
     @FindBy(linkText = "Log Out")
     private WebElement logOutLink;
 
+    @FindBy(xpath = "//*[@id='sideLogin-left-rail']/button[2]")
+    private WebElement logInButton;
+
+    @FindBy(id = "disneyid-iframe")
+    private WebElement logInIframe;
+
+    @FindBy(css = "[class='btn btn-primary btn-submit ng-isolate-scope']")
+    private WebElement logInButtonInsideModal;
+
+    @FindBy(linkText = "ESPN Profile")
+    private WebElement espnProfileLink;
+
+    @FindBy(id = "disneyid-iframe")
+    private WebElement profileIframe;
+
+    @FindBy(linkText = "Delete Account")
+    private WebElement deleteAccountLink;
+
+    @FindBy(xpath = "//*[@id='did-ui-view']/div/section/section/div[2]/button[1]")
+    private  WebElement deleteAccountButton;
+
+    @FindBy(xpath = "//*[contains(text(), 'Your account has been deleted')]")
+    private WebElement deletedAccountLabel;
+
     public void verifyHomePage(String url) {
         LOGGER.info("Página actual: " + getDriver().getCurrentUrl());
         LOGGER.info(String.valueOf(getDriver().getCurrentUrl().equals(url)));
@@ -60,8 +84,8 @@ public class HomePage extends BasePage {
     }
 
     public void theRegistrationModalIsVisible() {
-        toIframe(registerIframe);
         getWait().until(ExpectedConditions.elementToBeClickable(registerModal));
+        toIframe(registerIframe);
     }
 
     public void iFillInFirstNameWith(String name) {
@@ -92,5 +116,66 @@ public class HomePage extends BasePage {
     public boolean verifyLogOutLink() {
         getWait().until(ExpectedConditions.elementToBeClickable(logOutLink));
         return logOutLink.isDisplayed();
+    }
+
+    public void clickOnLogInButton() {
+        logInButton.click();
+    }
+
+    public void theLogInModalIsVisible() {
+        getWait().until(ExpectedConditions.elementToBeClickable(logInIframe));
+        toIframe(logInIframe);
+    }
+
+    public void iClickOnLogInButtonInsideModal() {
+        logInButtonInsideModal.click();
+    }
+
+    public void logIn(String email, String password) {
+        clickOnLogInButton();
+        theLogInModalIsVisible();
+        iFillInEmailWith(email);
+        iFillInPasswordWith(password);
+        iClickOnLogInButtonInsideModal();
+    }
+
+    public void clickOnLogOutLink() {
+        logOutLink.click();
+    }
+
+    public boolean verifyLogInButton() {
+        return logInButton.isDisplayed();
+    }
+
+    public void clickOnEspnProfileLink() {
+        espnProfileLink.click();
+    }
+
+    public void theUpdateYourAccountModalIsVisible() {
+        getWait().until(ExpectedConditions.elementToBeClickable(profileIframe));
+        toIframe(profileIframe);
+    }
+
+    public void scrollToDeleteAccountLink() {
+        scrollTo(deleteAccountLink);
+    }
+
+    public void clickOnDeleteAccountLink() {
+        deleteAccountLink.click();
+    }
+
+    public void verifyDeleteThisAccountButton() {
+        pause(2);
+        toDefault();
+        toIframe(profileIframe);
+        getWait().until(ExpectedConditions.elementToBeClickable(deleteAccountButton));
+    }
+
+    public void clickOnDeleteThisAccountButton() {
+        deleteAccountButton.click();
+    }
+
+    public boolean verifyDeletedAccountLabel() {
+        return getWait().until(ExpectedConditions.elementToBeClickable(deletedAccountLabel)).isDisplayed();
     }
 }

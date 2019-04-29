@@ -14,6 +14,5 @@ Feature: Register user
     And I put the cursor over the user icon
     Then I see a Log Out link
     Examples:
-      | name | lastName | email | password |
-      | JuanJose | CanoDuque | 12password1@asd.com  | password123* |
-      | nombre2  | lastName2 | 12email@emailsdd.com | password123* |
+      | name     | lastName  | email                  | password  |
+      | JuanJose | CanoDuque | qwerp12345@asd1235.com | asdf1234* |

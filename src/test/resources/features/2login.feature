@@ -12,6 +12,5 @@ Feature: Login
     And I put the cursor over the user icon
     Then I see a Log Out link
     Examples:
-      | email            | password  |
-      | jjcadu@gmail.com | password1 |
-      | email@email2.com | password2 |
+      | email                  | password  |
+      | qwerp12345@asd1235.com | asdf1234* |

@@ -9,7 +9,7 @@ import org.testng.annotations.*;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "com.globant.academy.stepdefs",
-        tags = "@register",
+        tags = "@register,@login,@logout,@deactivate",
         plugin = {"pretty"}
 )
 public class TestRunner {

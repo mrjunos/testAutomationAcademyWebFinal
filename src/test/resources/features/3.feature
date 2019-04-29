@@ -1,4 +1,4 @@
-@login
+@logout
 Feature: Login
   As a user, i want to login into the system when i provide email and password.
 
@@ -9,6 +9,5 @@ Feature: Login
     And I click on the Log Out link
     Then I see a Log In button
     Examples:
-      | email            | password  |
-      | jjcadu@gmail.com | password1 |
-      | email@email2.com | password2 |
+      | email                  | password  |
+      | qwerp12345@asd1235.com | asdf1234* |
