@@ -4,13 +4,10 @@ Feature: Login
 
   Scenario Outline: Loging in with active user
     Given I am in "http://www.espn.com/?src=com&_adblock=true" Page
-    When I click on Log In button
-    And The Log In modal is visible
-    And I fill in Email Address with "<email>"
-    And I fill in Password with "<password>"
-    And I click on Log In button Inside Modal
-    And I put the cursor over the user icon
-    Then I see a Log Out link
+    And I am logged in with "<email>" and "<password>"
+    When I put the cursor over the user icon
+    And I click on the Log Out link
+    Then I see a Log In button
     Examples:
       | email            | password  |
       | jjcadu@gmail.com | password1 |

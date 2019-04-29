@@ -12,7 +12,7 @@ Feature: Register user
     And I fill in Password with "<password>"
     And I click on Sign Up button Inside Modal
     And I put the cursor over the user icon
-    Then I see a log out link
+    Then I see a Log Out link
     Examples:
       | name | lastName | email | password |
       | JuanJose | CanoDuque | 12password1@asd.com  | password123* |
